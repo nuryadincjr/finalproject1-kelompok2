@@ -1,4 +1,4 @@
-package com.nuryadincjr.samplegithub;
+package com.nuryadincjr.todolist;
 
 import org.junit.Test;
 
