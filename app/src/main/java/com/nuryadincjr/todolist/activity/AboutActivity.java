@@ -1,24 +1,23 @@
 package com.nuryadincjr.todolist.activity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nuryadincjr.todolist.R;
-import com.nuryadincjr.todolist.databinding.ActivitySearchBinding;
+import com.nuryadincjr.todolist.databinding.ActivityAboutBinding;
 
-public class SearchActivity extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
 
-    private ActivitySearchBinding binding;
+    private ActivityAboutBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_about);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        binding = ActivityAboutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
     }

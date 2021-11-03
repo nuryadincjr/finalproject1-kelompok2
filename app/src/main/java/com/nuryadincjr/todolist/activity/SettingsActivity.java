@@ -6,20 +6,20 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nuryadincjr.todolist.R;
-import com.nuryadincjr.todolist.databinding.ActivitySearchBinding;
+import com.nuryadincjr.todolist.databinding.ActivitySettingsBinding;
 
-public class SearchActivity extends AppCompatActivity {
-
-    private ActivitySearchBinding binding;
+public class SettingsActivity extends AppCompatActivity {
+    private ActivitySettingsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
     }
 

@@ -8,10 +8,17 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
+import com.nuryadincjr.todolist.activity.AboutActivity;
 import com.nuryadincjr.todolist.activity.SearchActivity;
+import com.nuryadincjr.todolist.activity.SettingsActivity;
 import com.nuryadincjr.todolist.databinding.ActivityMainBinding;
+import com.nuryadincjr.todolist.fragment.ArchipFragment;
+import com.nuryadincjr.todolist.fragment.HomeFragment;
+import com.nuryadincjr.todolist.fragment.TrashFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,7 +40,8 @@ public class MainActivity extends AppCompatActivity
 
         binding.navigationView.setNavigationItemSelectedListener(this);
         if(savedInstanceState == null) {
-            binding.navigationView.setCheckedItem(R.id.archipMenu);
+            getFragmentPage(new HomeFragment());
+            binding.navigationView.setCheckedItem(R.id.homeMenu);
         }
     }
 
@@ -58,7 +66,42 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        switch (item.getItemId()) {
+            case R.id.homeMenu:
+                getFragmentPage(new HomeFragment());
+                getSupportActionBar().setTitle("My to do list");
+                binding.navigationView.setCheckedItem(R.id.homeMenu);
+                break;
+            case R.id.archipMenu:
+                getFragmentPage(new ArchipFragment());
+                getSupportActionBar().setTitle("Arsip");
+                binding.navigationView.setCheckedItem(R.id.archipMenu);
+                break;
+            case R.id.trashMenu:
+                getFragmentPage(new TrashFragment());
+                getSupportActionBar().setTitle("Sampah");
+                binding.navigationView.setCheckedItem(R.id.trashMenu);
+                break;
+            case R.id.settingsMenu:
+                startActivity(new Intent(this, SettingsActivity.class));
+                break;
+            case R.id.aboutMenu:
+                startActivity(new Intent(this, AboutActivity.class));
+                break;
+        }
+        binding.drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private boolean getFragmentPage(Fragment fragment) {
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
+        }
+        return true;
     }
 
     private void layoutSeting() {
