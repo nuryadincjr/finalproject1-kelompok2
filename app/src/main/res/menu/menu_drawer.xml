@@ -12,7 +12,7 @@
     <item android:title="Tools">
         <menu>
             <item android:id="@+id/archipMenu"
-                android:icon="@drawable/ic_archive"
+                android:icon="@drawable/ic_archive_fild"
                 android:title="Arsip"/>
 
             <item android:id="@+id/trashMenu"

@@ -25,7 +25,6 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:elevation="4dp"
             app:title="My to do list"
-            app:titleMarginStart="10dp"
             tools:logo="@drawable/ic_menu" />
 
         <FrameLayout

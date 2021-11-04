@@ -2,22 +2,17 @@ package com.nuryadincjr.todolist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.*;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.nuryadincjr.todolist.activity.*;
+import com.nuryadincjr.todolist.fragment.*;
 import com.google.android.material.navigation.NavigationView;
-import com.nuryadincjr.todolist.activity.AboutActivity;
-import com.nuryadincjr.todolist.activity.SettingsActivity;
 import com.nuryadincjr.todolist.databinding.ActivityMainBinding;
-import com.nuryadincjr.todolist.fragment.ArchipFragment;
-import com.nuryadincjr.todolist.fragment.HomeFragment;
-import com.nuryadincjr.todolist.fragment.TrashFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,28 +34,9 @@ public class MainActivity extends AppCompatActivity
 
         binding.navigationView.setNavigationItemSelectedListener(this);
         if(savedInstanceState == null) {
-            getFragmentPage(new HomeFragment());
             binding.navigationView.setCheckedItem(R.id.homeMenu);
+            getFragmentPage(new HomeFragment());
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_view, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.actView:
-                layoutSeting();
-                return true;
-            case R.id.actSearch:
-                // getintent
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -98,17 +74,5 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         return true;
-    }
-
-    private void layoutSeting() {
-//        GridLayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-//        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                return toDoAdapter.getItemViewType(position);
-//            }
-//        });
-//        binding.rvToDo.setLayoutManager(mLayoutManager);
-//        binding.rvToDo.setAdapter(toDoAdapter);
     }
 }

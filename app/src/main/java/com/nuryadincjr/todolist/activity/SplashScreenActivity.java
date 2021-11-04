@@ -2,13 +2,10 @@ package com.nuryadincjr.todolist.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.*;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-
-import com.nuryadincjr.todolist.MainActivity;
 import com.nuryadincjr.todolist.R;
+import com.nuryadincjr.todolist.MainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

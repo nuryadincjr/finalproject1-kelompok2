@@ -1,52 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ActionsActivity">
+    android:padding="@dimen/small_padding"
+    android:orientation="vertical"
+    tools:context=".activity.SettingsActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        style="@style/SettingsList">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/small_padding">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/tvTitle"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:hint="Title"
-                tools:text="Final Project 1"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:background="@android:color/transparent"/>
+                android:text="Jumlah data"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/tvDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:hint="Description"
-                android:textSize="18sp"
-                tools:text="@string/str_lorem"
-                android:background="@android:color/transparent" />
+            <TextView
+                android:id="@+id/tvDataCount"
+                style="@style/SetingView"
+                tools:text="200" />
 
         </LinearLayout>
-    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/btnDataCount"
+            style="@style/SetingButton" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/SettingsList">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumlah List"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvDataList"
+                style="@style/SetingView"
+                tools:text="200" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDataList"
+            style="@style/SetingButton" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/SettingsList">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumlah Pin"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvDataPin"
+                style="@style/SetingView"
+                tools:text="200" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDataPin"
+            style="@style/SetingButton" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/SettingsList">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumlah Archive"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvDataArchive"
+                style="@style/SetingView"
+                tools:text="200" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDataArchive"
+            style="@style/SetingButton" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/SettingsList">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumlah Trash"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvDataTrash"
+                style="@style/SetingView"
+                tools:text="200" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDataTrash"
+            style="@style/SetingButton" />
+
+    </LinearLayout>
+
+</LinearLayout>

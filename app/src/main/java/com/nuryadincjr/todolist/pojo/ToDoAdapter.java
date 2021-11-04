@@ -1,7 +1,7 @@
 package com.nuryadincjr.todolist.pojo;
 
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
+import android.view.*;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,15 +10,18 @@ import com.nuryadincjr.todolist.data.ToDo;
 import com.nuryadincjr.todolist.databinding.ListItemBinding;
 import com.nuryadincjr.todolist.interfaces.ItemClickListener;
 
-import java.util.List;
+import java.util.*;
 
-public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
+public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> implements Filterable {
 
-    private final List<ToDo> data;
+    public final List<ToDo> data;
+    public List<ToDo> filteredData;
     public ItemClickListener itemClickListener;
+    public ItemFilter itemFilter = new ItemFilter(this);
 
     public ToDoAdapter(List<ToDo> data) {
         this.data = data;
+        this.filteredData = new ArrayList<>(data);
     }
 
     @NonNull
@@ -43,6 +46,11 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return itemFilter;
     }
 
 }

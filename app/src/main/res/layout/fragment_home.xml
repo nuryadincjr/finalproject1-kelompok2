@@ -22,31 +22,23 @@
 
                 <TextView
                     android:id="@+id/tvPin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="8dp"
+                    style="@style/ViewText"
                     android:text="Dipasangi Pin"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvToDoPin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <TextView
                     android:id="@+id/tvOther"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="8dp"
+                    style="@style/ViewText"
                     android:text="Lainnya"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvToDo"
@@ -64,10 +56,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        app:backgroundTint="@color/orange"
+        android:backgroundTint="@color/orange"
         android:contentDescription="Add"
-        android:clickable="true"
+        android:focusableInTouchMode="false"
         android:src="@drawable/ic_add"
-        android:focusable="true" />
+        tools:ignore="TouchTargetSizeCheck" />
 
 </FrameLayout>

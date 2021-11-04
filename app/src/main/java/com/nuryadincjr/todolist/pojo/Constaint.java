@@ -10,4 +10,5 @@ public class Constaint {
     public static final String IS_PIN = "PIN";
     public static final String IS_ARCHIVE = "ARCHIVE";
     public static final CharSequence DATE_FORMAT = "dd/MM/yyy hh:mm:ss a";
+    public static final String IS_VIEW = "VIEW";
 }

@@ -1,12 +1,6 @@
 package com.nuryadincjr.todolist.data;
 
-
-
-import androidx.room.Dao;
-import androidx.room.Query;
-import androidx.room.Insert;
-import androidx.room.Update;
-import androidx.room.Delete;
+import androidx.room.*;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
 
@@ -55,5 +49,4 @@ public interface ToDoDao {
 
     @Query("DELETE FROM todo where is_delete = 1")
     int deleteAllTrash();
-
 }

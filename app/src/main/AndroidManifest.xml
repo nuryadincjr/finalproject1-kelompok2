@@ -14,9 +14,11 @@
             android:exported="false" />
         <activity
             android:name=".activity.SettingsActivity"
+            android:label="Pengaturan"
             android:exported="false" />
         <activity
             android:name=".activity.AboutActivity"
+            android:label="Tentang"
             android:exported="false" />
         <activity
             android:name=".activity.SplashScreenActivity"

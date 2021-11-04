@@ -1,34 +1,29 @@
 package com.nuryadincjr.todolist.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.*;
+import android.widget.*;
 import android.text.format.DateFormat;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.nuryadincjr.todolist.databinding.ActivityActionsBinding;
 import com.google.android.material.snackbar.Snackbar;
-import com.nuryadincjr.todolist.R;
-import com.nuryadincjr.todolist.data.ToDo;
-import com.nuryadincjr.todolist.data.ToDoDatabases;
-import com.nuryadincjr.todolist.databinding.ActivitySettingsBinding;
 import com.nuryadincjr.todolist.pojo.Constaint;
-import com.nuryadincjr.todolist.util.AppExecutors;
+import com.nuryadincjr.todolist.data.*;
+import com.nuryadincjr.todolist.util.*;
+import com.nuryadincjr.todolist.R;
+
 
 import java.util.Date;
 
 public class ActionsActivity extends AppCompatActivity {
 
-    private ActivitySettingsBinding binding;
+    private ActivityActionsBinding binding;
     private ToDoDatabases databases;
-    private ToDo toDo;
-    private ToDo data;
-    private ToDo dataView;
-    private boolean isPin;
-    private boolean isArchip;
-    private boolean isDelete;
+    private AdapterPreference adapterPreference;
+    private ToDo toDo, data, dataView;
+    private boolean isPin, isArchip, isDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +31,11 @@ public class ActionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_actions);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        binding = ActivityActionsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        toDo = new ToDo();
         databases = ToDoDatabases.getInstance(this);
+        adapterPreference = AdapterPreference.getInstance(this);
 
         data = getIntent().getParcelableExtra(Constaint.TITLE_CHANGE);
         dataView = getIntent().getParcelableExtra(Constaint.TITLE_VIW_ONLY);
@@ -56,26 +51,23 @@ public class ActionsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_edit, menu);
         menu.findItem(R.id.actRestore).setVisible(false);
 
         if(data == null) menu.findItem(R.id.actDeleteFix).setVisible(false);
-
         if(dataView != null) {
             menu.findItem(R.id.actArsip).setVisible(false);
             menu.findItem(R.id.actPin).setVisible(false);
             menu.findItem(R.id.actDelete).setVisible(false);
             menu.findItem(R.id.actDeleteFix).setVisible(true);
             menu.findItem(R.id.actRestore).setVisible(true);
+            menu.findItem(R.id.actShare).setVisible(false);
         }
 
         getTonggolButton(menu, R.id.actPin, R.layout.btn_pin,
                 R.id.btn_pin, isPin, Constaint.IS_PIN);
         getTonggolButton(menu, R.id.actArsip, R.layout.btn_archive,
                 R.id.btn_archive, isArchip, Constaint.IS_ARCHIVE);
-
-
         return true;
     }
 
@@ -99,35 +91,41 @@ public class ActionsActivity extends AppCompatActivity {
                 AppExecutors.getInstance().diskID().execute(() -> databases.toDoDao().update(dataView));
                 finish();
                 return true;
+            case R.id.actShare:
+                if(!data.getTitle().equals("") && !data.getDetails().equals(""))
+                    adapterPreference.shareData("Title: " + data.getTitle() + "\n\n" + data.getDetails());
+                else if(data.getTitle().equals("")) adapterPreference.shareData(data.getDetails());
+                else if(data.getDetails().equals("")) adapterPreference.shareData(data.getTitle());
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void isData() {
         if(data != null) {
+            getSupportActionBar().setTitle(Constaint.TITLE_CHANGE);
             binding.tvTitle.setText(data.getTitle());
             binding.tvDescription.setText(data.getDetails());
             isPin = data.isPin();
             isArchip = data.isArcip();
 
-            getSupportActionBar().setTitle(Constaint.TITLE_CHANGE);
         } else if(dataView != null) {
+            getSupportActionBar().setTitle(Constaint.TITLE_VIW_ONLY);
             binding.tvTitle.setText(dataView.getTitle());
             binding.tvDescription.setText(dataView.getDetails());
-
             binding.tvTitle.setFocusable(false);
             binding.tvDescription.setFocusable(false);
 
             isEditlable(binding.tvTitle);
             isEditlable(binding.tvDescription);
-            getSupportActionBar().setTitle(Constaint.TITLE_VIW_ONLY);
         } else
             getSupportActionBar().setTitle(Constaint.TITLE_ADD);
 
     }
 
     private void isEditlable(EditText editText) {
-        editText.setOnClickListener(v -> Snackbar.make(v, "Tidak dapat mengedit dalam sampah", Snackbar.LENGTH_LONG)
+        editText.setOnClickListener(v -> Snackbar.make(v,
+                "Tidak dapat mengedit dalam sampah", Snackbar.LENGTH_LONG)
                 .setAction(Constaint.TITLE_RESTORE, view -> {
                     dataView.setDelete(false);
                     AppExecutors.getInstance().diskID().execute(() -> databases.toDoDao().update(dataView));

@@ -2,36 +2,29 @@ package com.nuryadincjr.todolist.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.PopupMenu;
+import android.view.*;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.nuryadincjr.todolist.R;
-import com.nuryadincjr.todolist.activity.ActionsActivity;
-import com.nuryadincjr.todolist.data.ToDo;
-import com.nuryadincjr.todolist.data.ToDoDatabases;
-import com.nuryadincjr.todolist.databinding.FragmentHomeBinding;
-import com.nuryadincjr.todolist.interfaces.ItemClickListener;
+import com.nuryadincjr.todolist.util.*;
+import com.nuryadincjr.todolist.data.*;
 import com.nuryadincjr.todolist.pojo.Constaint;
-import com.nuryadincjr.todolist.pojo.ToDoAdapter;
-import com.nuryadincjr.todolist.util.AppExecutors;
+import com.nuryadincjr.todolist.activity.ActionsActivity;
+import com.nuryadincjr.todolist.databinding.FragmentHomeBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private ToDoDatabases databases;
-    private List<ToDo> toDoList;
-    private List<ToDo> toDoListPin;
-    private ToDoAdapter toDoAdapter;
-    private ToDoAdapter toDoAdapterPin;
+    private LocalPreference localPreference;
+    private AdapterPreference adapterPreference;
+    private OptionMenuPreference optionMenuPreference;
+    private boolean isView;
+    private int spanCount;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -42,17 +35,12 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        setHasOptionsMenu(true);
 
         databases = ToDoDatabases.getInstance(getContext());
-
-        toDoList = new ArrayList<>();
-        toDoListPin = new ArrayList<>();
-        toDoAdapter = new ToDoAdapter(toDoList);
-        toDoAdapterPin = new ToDoAdapter(toDoListPin);
-        binding.rvToDo.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        binding.rvToDoPin.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        binding.rvToDo.setAdapter(toDoAdapter);
-        binding.rvToDoPin.setAdapter(toDoAdapterPin);
+        localPreference = LocalPreference.getInstance(getContext());
+        adapterPreference = AdapterPreference.getInstance(getContext());
+        optionMenuPreference = OptionMenuPreference.getInstance(getContext());
 
         binding.swipeRefresh.setColorSchemeResources(R.color.orange);
         binding.swipeRefresh.setOnRefreshListener(() -> {
@@ -61,9 +49,6 @@ public class HomeFragment extends Fragment {
         });
 
         binding.fab.setOnClickListener(v -> startActivity(new Intent(getContext(), ActionsActivity.class)));
-
-        getData();
-
         return root;
     }
 
@@ -73,100 +58,37 @@ public class HomeFragment extends Fragment {
         getData();
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        optionMenuPreference.getOnCreateOptionsMenu(menu, inflater, isView);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
     private void getData() {
-        AppExecutors.getInstance().mainThread().execute(() -> toDoList = databases.toDoDao().getAllToDoList());
-        AppExecutors.getInstance().mainThread().execute(() -> toDoListPin = databases.toDoDao().getAllPin());
+        isView = localPreference.getPreferences().getBoolean(Constaint.IS_VIEW, isView);
+        if(isView) spanCount = 2;
+        else spanCount = 1;
 
-        toDoAdapter = new ToDoAdapter(toDoList);
-        toDoAdapterPin = new ToDoAdapter(toDoListPin);
+        AppExecutors.getInstance().mainThread().execute(() -> {
+            List<ToDo> toDoList = databases.toDoDao().getAllToDoList();
+            List<ToDo> toDoListPin = databases.toDoDao().getAllPin();
+            getActivity().runOnUiThread(() -> {
+                if(toDoListPin.size() != 0) {
+                    binding.tvPin.setVisibility(View.VISIBLE);
+                    binding.rvToDoPin.setVisibility(View.VISIBLE);
 
-        if(toDoListPin.size() != 0) {
-            binding.tvPin.setVisibility(View.VISIBLE);
-            binding.rvToDoPin.setVisibility(View.VISIBLE);
-            if(toDoList.size() != 0) binding.tvOther.setVisibility(View.VISIBLE);
-            else binding.tvOther.setVisibility(View.GONE);
-        } else {
-            binding.tvPin.setVisibility(View.GONE);
-            binding.tvOther.setVisibility(View.GONE);
-            binding.rvToDoPin.setVisibility(View.GONE);
-        }
+                    if(toDoList.size() != 0) binding.tvOther.setVisibility(View.VISIBLE);
+                    else binding.tvOther.setVisibility(View.GONE);
 
-        binding.rvToDoPin.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        binding.rvToDo.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        binding.rvToDoPin.setAdapter(toDoAdapterPin);
-        binding.rvToDo.setAdapter(toDoAdapter);
-        getAdapter(toDoAdapterPin, toDoListPin);
-        getAdapter(toDoAdapter, toDoList);
-        toDoAdapterPin.notifyDataSetChanged();
-        toDoAdapter.notifyDataSetChanged();
-    }
+                } else {
+                    binding.tvPin.setVisibility(View.GONE);
+                    binding.tvOther.setVisibility(View.GONE);
+                    binding.rvToDoPin.setVisibility(View.GONE);
+                }
 
-    private void getAdapter(ToDoAdapter adapter, List<ToDo> list) {
-        adapter.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, final int position) {
-                openMenuEditToolsClick(view, list.get(position));
-            }
-
-            @Override
-            public void onLongClick(View view, final int position) {
-                openMenuEditToolsLongClick(view, list.get(position));
-            }
+                adapterPreference.getAdapters(toDoList, binding.rvToDo, spanCount);
+                adapterPreference.getAdapters(toDoListPin, binding.rvToDoPin, spanCount);
+            });
         });
-    }
-
-    private void openMenuEditToolsClick(View view, ToDo toDo) {
-        switch (view.getId()) {
-            case R.id.tvTitleTask:
-            case R.id.tvDetailTask:
-                startActivity(new Intent(getContext(), ActionsActivity.class)
-                        .putExtra(Constaint.TITLE_CHANGE, toDo));
-                break;
-        }
-    }
-
-    private void openMenuEditToolsLongClick(View view, ToDo toDo) {
-        switch (view.getId()) {
-            case R.id.tvTitleTask:
-            case R.id.tvDetailTask:
-                openMenuEditPopup(view, toDo);
-                break;
-        }
-    }
-
-    public void openMenuEditPopup(View view, ToDo toDo) {
-        PopupMenu menu = new PopupMenu(view.getContext(), view);
-        menu.getMenuInflater().inflate(R.menu.menu_edit, menu.getMenu());
-        menu.getMenu().findItem(R.id.actRestore).setVisible(false);
-
-        if(toDo.isPin()) menu.getMenu().findItem(R.id.actPin).setTitle("Lepas sematan");
-
-        menu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.actPin:
-                    if(toDo.isPin()) getPopupSelected(toDo, false, false, false);
-                    else getPopupSelected(toDo, true, false, false);
-                    break;
-                case R.id.actArsip:
-                    getPopupSelected(toDo, false, false, true);
-                    break;
-                case R.id.actDelete:
-                    getPopupSelected(toDo, false, true, false);
-                    break;
-                case R.id.actDeleteFix:
-                    AppExecutors.getInstance().diskID().execute(() -> databases.toDoDao().delete(toDo));
-                    break;
-            }
-            getData();
-            return true;
-        });
-        menu.show();
-    }
-
-    private void getPopupSelected(ToDo toDo, boolean isPin, boolean isDelete, boolean isArchive) {
-        toDo.setPin(isPin);
-        toDo.setDelete(isDelete);
-        toDo.setArcip(isArchive);
-        AppExecutors.getInstance().diskID().execute(() -> databases.toDoDao().update(toDo));
     }
 }

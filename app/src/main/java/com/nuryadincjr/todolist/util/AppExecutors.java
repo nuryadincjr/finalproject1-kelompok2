@@ -1,12 +1,10 @@
 package com.nuryadincjr.todolist.util;
 
-import android.os.Handler;
-import android.os.Looper;
+import android.os.*;
 
 import com.nuryadincjr.todolist.pojo.Constaint;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class AppExecutors {
     private static final Object LOCK = new Object();
