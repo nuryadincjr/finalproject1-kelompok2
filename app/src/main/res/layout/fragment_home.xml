@@ -28,13 +28,13 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="8dp"
                     android:text="Dipasangi Pin"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvToDoPin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
@@ -46,7 +46,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="8dp"
                     android:text="Lainnya"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvToDo"
@@ -64,9 +64,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/orange"
+        app:backgroundTint="@color/orange"
         android:contentDescription="Add"
-        android:focusableInTouchMode="false"
-        android:src="@drawable/ic_add" />
+        android:clickable="true"
+        android:src="@drawable/ic_add"
+        android:focusable="true" />
 
 </FrameLayout>

@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nuryadincjr.todolist.data.ToDo;
 import com.nuryadincjr.todolist.databinding.ListItemBinding;
 
-class ToDoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+class ToDoViewHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener, View.OnLongClickListener {
+
     private final ToDoAdapter toDoAdapter;
     private final ListItemBinding binding;
 
@@ -16,17 +18,28 @@ class ToDoViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
         this.toDoAdapter = toDoAdapter;
         this.binding = binding;
 
-        binding.btnTaskCompleted.setOnClickListener(this);
         binding.tvDetailTask.setOnClickListener(this);
+        binding.tvTitleTask.setOnClickListener(this);
+        binding.tvDetailTask.setOnLongClickListener(this);
+        binding.tvTitleTask.setOnLongClickListener(this);
     }
 
     public void setDataToView(ToDo toDo) {
-        binding.tvDetailTask.setText(toDo.getTodolist());
+        binding.tvTitleTask.setText(toDo.getTitle());
+        binding.tvDetailTask.setText(toDo.getDetails());
+        binding.tvEdited.setText(toDo.getLatestEdited());
     }
 
     @Override
     public void onClick(View view) {
         if (toDoAdapter.itemClickListener != null)
             toDoAdapter.itemClickListener.onClick(view, getAdapterPosition());
+    }
+
+    @Override
+    public boolean onLongClick(View view) {
+        if (toDoAdapter.itemClickListener != null)
+            toDoAdapter.itemClickListener.onLongClick(view, getAdapterPosition());
+        return true;
     }
 }

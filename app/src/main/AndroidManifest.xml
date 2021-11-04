@@ -13,16 +13,10 @@
             android:name=".activity.ActionsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.tesMainActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".activity.AboutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".activity.SplashScreenActivity"

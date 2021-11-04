@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
 import com.nuryadincjr.todolist.activity.AboutActivity;
-import com.nuryadincjr.todolist.activity.SearchActivity;
 import com.nuryadincjr.todolist.activity.SettingsActivity;
 import com.nuryadincjr.todolist.databinding.ActivityMainBinding;
 import com.nuryadincjr.todolist.fragment.ArchipFragment;
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity
                 layoutSeting();
                 return true;
             case R.id.actSearch:
-                startActivity(new Intent(this, SearchActivity.class));
+                // getintent
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -70,17 +69,14 @@ public class MainActivity extends AppCompatActivity
             case R.id.homeMenu:
                 getFragmentPage(new HomeFragment());
                 getSupportActionBar().setTitle("My to do list");
-                binding.navigationView.setCheckedItem(R.id.homeMenu);
                 break;
             case R.id.archipMenu:
                 getFragmentPage(new ArchipFragment());
                 getSupportActionBar().setTitle("Arsip");
-                binding.navigationView.setCheckedItem(R.id.archipMenu);
                 break;
             case R.id.trashMenu:
-                getFragmentPage(new TrashFragment());
                 getSupportActionBar().setTitle("Sampah");
-                binding.navigationView.setCheckedItem(R.id.trashMenu);
+                getFragmentPage(new TrashFragment());
                 break;
             case R.id.settingsMenu:
                 startActivity(new Intent(this, SettingsActivity.class));

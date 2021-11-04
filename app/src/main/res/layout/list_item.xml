@@ -1,29 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginLeft="@dimen/small_margin"
-    android:layout_marginRight="@dimen/small_margin"
-    android:layout_marginTop="@dimen/small_margin">
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/bg_item_rounded" >
 
-    <Button
-        android:id="@+id/btnTaskCompleted"
+    <TextView
+        android:id="@+id/tvTitleTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_title"
-        android:padding="@dimen/small_padding"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:text="@string/str_task_completed"
-        app:drawableRightCompat="@drawable/ic_more" />
+        tools:text="Final Project 1" />
+
+    <TextView
+        android:id="@+id/tvEdited"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:drawableRightCompat="@drawable/ic_more"
+        tools:ignore="TextContrastCheck"
+        tools:text="Diedit 07.00" />
 
     <TextView
         android:id="@+id/tvDetailTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnTaskCompleted"
-        android:padding="@dimen/medium_padding"
-        android:background="@drawable/bg_item_rounded"
+        android:layout_below="@+id/tvTitleTask"
+        android:ellipsize="end"
+        android:maxLines="20"
+        android:padding="10dp"
         android:text="@string/str_lorem"
         android:textColor="@color/black" />
 

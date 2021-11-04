@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/actPin"
+        android:title="Sematkan"
+        app:actionLayout="@layout/btn_pin"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/actArsip"
+        android:icon="@drawable/ic_archive"
+        app:actionLayout="@layout/btn_archive"
+        android:title="Arsipkan"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/actDelete"
+        android:icon="@drawable/ic_untrash"
+        android:title="Pindah tempat sampah"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/actDeleteFix"
+        android:icon="@drawable/ic_trash"
+        android:title="Hapus permanen"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/actRestore"
+        android:icon="@drawable/ic_untrash"
+        android:title="Pulihkan"
+        app:showAsAction="never"/>
+
+</menu>

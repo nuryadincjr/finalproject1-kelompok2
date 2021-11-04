@@ -1,13 +1,14 @@
 package com.nuryadincjr.todolist.data;
 
 
-import static androidx.room.OnConflictStrategy.REPLACE;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Insert;
 import androidx.room.Update;
+import androidx.room.Delete;
+
+import static androidx.room.OnConflictStrategy.REPLACE;
 
 import java.util.List;
 
@@ -15,6 +16,21 @@ import java.util.List;
 public interface ToDoDao {
     @Query("SELECT * FROM toDo")
     List<ToDo> getAllToDo();
+
+    @Query("SELECT * FROM toDo WHERE task_title = :title")
+    List<ToDo> getSpecificToDo(String title);
+
+    @Query("SELECT * FROM toDo WHERE is_pin = 0 AND is_arcip = 0 AND is_delete = 0 ORDER BY latest_edited DESC")
+    List<ToDo> getAllToDoList();
+
+    @Query("SELECT * FROM toDo WHERE is_delete = 1 ORDER BY latest_edited DESC")
+    List<ToDo> getAllTrash();
+
+    @Query("SELECT * FROM toDo WHERE is_arcip = 1 ORDER BY latest_edited DESC")
+    List<ToDo> getAllArcip();
+
+    @Query("SELECT * FROM toDo WHERE is_pin = 1 ORDER BY latest_edited DESC")
+    List<ToDo> getAllPin();
 
     @Insert(onConflict = REPLACE)
     Long insert(ToDo toDo);
@@ -24,4 +40,20 @@ public interface ToDoDao {
 
     @Delete
     int delete(ToDo toDo);
+
+    @Query("DELETE FROM todo")
+    int deleteAll();
+
+    @Query("DELETE FROM todo where is_pin = 0 AND is_arcip = 0 AND is_delete = 0")
+    int deleteAllList();
+
+    @Query("DELETE FROM todo where is_pin = 1")
+    int deleteAllPin();
+
+    @Query("DELETE FROM todo where is_arcip = 1")
+    int deleteAllArchip();
+
+    @Query("DELETE FROM todo where is_delete = 1")
+    int deleteAllTrash();
+
 }
