@@ -1,5 +1,7 @@
 package com.nuryadincjr.todolist.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -8,12 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nuryadincjr.todolist.R;
 import com.nuryadincjr.todolist.databinding.ActivityAboutBinding;
-import com.nuryadincjr.todolist.util.AdapterPreference;
 
 public class AboutActivity extends AppCompatActivity {
 
     private ActivityAboutBinding binding;
-    private AdapterPreference adapterPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +23,14 @@ public class AboutActivity extends AppCompatActivity {
 
         binding = ActivityAboutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        adapterPreference = AdapterPreference.getInstance(this);
 
         getPortofoloi(binding.tvPortofolo1, "https://github.com/amrimarihotjati");
         getPortofoloi(binding.tvPortofolo2, "https://github.com/nuryadincjr");
     }
 
-    private void getPortofoloi(TextView view, String link) {
-        view.setOnClickListener(v -> adapterPreference.shareData(link));
+    private void getPortofoloi(TextView view, String url) {
+        view.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW)
+                .setData(Uri.parse(url))));
     }
 
     @Override

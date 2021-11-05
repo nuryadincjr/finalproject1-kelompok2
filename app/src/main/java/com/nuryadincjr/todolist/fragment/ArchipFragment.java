@@ -67,9 +67,8 @@ public class ArchipFragment extends Fragment {
 
         AppExecutors.getInstance().mainThread().execute(() -> {
             List<ToDo> toDoList = databases.toDoDao().getAllArcip();
-            getActivity().runOnUiThread(() -> {
-                adapterPreference.getAdapters(toDoList, binding.rvToDo, spanCount);
-            });
+            getActivity().runOnUiThread(() -> adapterPreference
+                    .getAdapters(toDoList, binding.rvToDo, spanCount));
         });
     }
 }
