@@ -1,5 +1,6 @@
 package com.nuryadincjr.todolist;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -8,11 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.*;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.nuryadincjr.todolist.activity.*;
 import com.nuryadincjr.todolist.fragment.*;
 import com.google.android.material.navigation.NavigationView;
 import com.nuryadincjr.todolist.databinding.ActivityMainBinding;
+import com.nuryadincjr.todolist.pojo.Constaint;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity
         binding.navigationView.setNavigationItemSelectedListener(this);
         if(savedInstanceState == null) {
             binding.navigationView.setCheckedItem(R.id.homeMenu);
-            getFragmentPage(new HomeFragment());
+            getFragmentPage(new HomeFragment(),this);
         }
     }
 
@@ -43,16 +46,16 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.homeMenu:
-                getFragmentPage(new HomeFragment());
+                getFragmentPage(new HomeFragment(), this);
                 getSupportActionBar().setTitle("My to do list");
                 break;
             case R.id.archipMenu:
-                getFragmentPage(new ArchipFragment());
+                getFragmentPage(new ArchipFragment(), this);
                 getSupportActionBar().setTitle("Arsip");
                 break;
             case R.id.trashMenu:
                 getSupportActionBar().setTitle("Sampah");
-                getFragmentPage(new TrashFragment());
+                getFragmentPage(new TrashFragment(), this);
                 break;
             case R.id.settingsMenu:
                 startActivity(new Intent(this, SettingsActivity.class));
@@ -65,9 +68,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private boolean getFragmentPage(Fragment fragment) {
+    public static boolean getFragmentPage(Fragment fragment, Context context) {
         if (fragment != null) {
-            getSupportFragmentManager()
+            ((FragmentActivity)context).getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .commit();

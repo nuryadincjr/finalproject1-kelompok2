@@ -14,14 +14,15 @@ import java.util.*;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> implements Filterable {
 
-    public final List<ToDo> data;
+    public List<ToDo> data;
     public List<ToDo> filteredData;
+    public ItemFilter itemFilter;
     public ItemClickListener itemClickListener;
-    public ItemFilter itemFilter = new ItemFilter(this);
 
     public ToDoAdapter(List<ToDo> data) {
         this.data = data;
         this.filteredData = new ArrayList<>(data);
+        this.itemFilter = new ItemFilter(this);
     }
 
     @NonNull

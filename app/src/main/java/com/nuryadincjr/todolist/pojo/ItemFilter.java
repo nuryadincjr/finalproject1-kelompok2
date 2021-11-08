@@ -6,7 +6,7 @@ import com.nuryadincjr.todolist.data.ToDo;
 
 import java.util.*;
 
-class ItemFilter extends Filter {
+public class ItemFilter extends Filter {
     private final ToDoAdapter toDoAdapter;
 
     public ItemFilter(ToDoAdapter toDoAdapter) {

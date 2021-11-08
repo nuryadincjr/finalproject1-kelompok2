@@ -7,7 +7,7 @@
         android:title="Pulihkan" />
 
     <item
-        android:id="@+id/actDelete"
+        android:id="@+id/actDeleteFix"
         android:icon="@drawable/ic_trash"
         android:title="Hapus Permanen" />
 
