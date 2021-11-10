@@ -11,7 +11,7 @@ public interface ToDoDao {
     @Query("SELECT * FROM toDo")
     List<ToDo> getAllToDo();
 
-    @Query("SELECT * FROM toDo WHERE task_title = :title")
+    @Query("SELECT * FROM toDo WHERE task_title LIKE :title")
     List<ToDo> getSpecificToDo(String title);
 
     @Query("SELECT * FROM toDo WHERE is_pin = 0 AND is_arcip = 0 AND is_delete = 0 ORDER BY latest_edited DESC")

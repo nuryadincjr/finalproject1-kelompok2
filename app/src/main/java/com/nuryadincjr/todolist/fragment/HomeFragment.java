@@ -100,8 +100,8 @@ public class HomeFragment extends Fragment {
                     binding.rvToDoPin.setVisibility(View.GONE);
                 }
 
-                adapterPreference.getAdapters(toDoList, binding.rvToDo, spanCount);
                 adapterPreference.getAdapters(toDoListPin, binding.rvToDoPin, spanCount);
+                adapterPreference.getAdapters(toDoList, binding.rvToDo, spanCount);
             });
         });
     }
