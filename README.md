@@ -2,8 +2,8 @@
 
 Studi independen Kampus Merdeka
 
-app relase: ToDoList\app\build\outputs\apk\release
-keysote file: keystor.jks
+- app relase: ToDoList\app\release
+- keysote file: keystor.jks
 
 ## Screenshots
 
