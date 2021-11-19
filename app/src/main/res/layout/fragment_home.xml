@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.androi.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -59,7 +59,7 @@
         android:layout_margin="@dimen/medium_margin"
         android:backgroundTint="@color/orange"
         android:contentDescription="@string/str_add"
-        android:tint="@color/white"
+        tools:tint="@color/white"
         android:focusableInTouchMode="false"
         android:src="@drawable/ic_add"
         tools:ignore="TouchTargetSizeCheck" />

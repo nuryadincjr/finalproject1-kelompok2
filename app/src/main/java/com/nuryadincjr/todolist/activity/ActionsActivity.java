@@ -3,11 +3,15 @@ package com.nuryadincjr.todolist.activity;
 import static com.nuryadincjr.todolist.util.AppExecutors.getInstance;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -24,12 +28,11 @@ import com.nuryadincjr.todolist.util.AdapterPreference;
 public class ActionsActivity extends AppCompatActivity {
 
     private ActivityActionsBinding binding;
-    private ToDoDatabases databases;
     private AdapterPreference adapterPreference;
+    private ToDoDatabases databases;
     private ToDo toDo, data, dataView;
-    private boolean isPin;
-    private boolean isArchip;
-    private boolean isDelete;
+    private Menu menu;
+    private boolean isPin, isArchip, isDelete, isInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +51,16 @@ public class ActionsActivity extends AppCompatActivity {
         dataView = getIntent().getParcelableExtra(Constaint.TITLE_VIW_ONLY);
 
         isData();
+
+        onInputListener(binding.tvDescription);
+        onInputListener(binding.tvTitle);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_edit, menu);
         menu.findItem(R.id.act_restore).setVisible(false);
+        this.menu = menu;
 
         if(data == null) menu.findItem(R.id.act_delete_fix).setVisible(false);
         if(dataView != null) {
@@ -65,10 +72,7 @@ public class ActionsActivity extends AppCompatActivity {
             menu.findItem(R.id.act_share).setVisible(false);
         }
 
-        getTonggolButton(menu, R.id.act_arsip, R.layout.btn_archive,
-                R.id.btn_archive, isArchip, Constaint.IS_ARCHIVE);
-        getTonggolButton(menu, R.id.act_pin, R.layout.btn_pin,
-                R.id.btn_pin, isPin, Constaint.IS_PIN);
+        isEdited(menu);
         return true;
     }
 
@@ -102,13 +106,50 @@ public class ActionsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void onInputListener(TextView view) {
+        view.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                isInput = i2 > 0;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                isEdited(menu);
+            }
+        });
+    }
+
+    private void isEdited(Menu menu) {
+        if (isInput) {
+            menu.findItem(R.id.act_delete).setEnabled(true);
+            menu.findItem(R.id.act_share).setEnabled(true);
+        } else {
+            menu.findItem(R.id.act_delete).setEnabled(false);
+            menu.findItem(R.id.act_share).setEnabled(false);
+        }
+
+        getTonggolButton(menu, R.id.act_arsip, R.layout.btn_archive,
+                R.id.btn_archive, isArchip, Constaint.IS_ARCHIVE);
+        getTonggolButton(menu, R.id.act_pin, R.layout.btn_pin,
+                R.id.btn_pin, isPin, Constaint.IS_PIN);
+    }
+
     private void isData() {
         if(data != null) {
             getSupportActionBar().setTitle(Constaint.TITLE_CHANGE);
-            binding.tvTitle.setText(data.getTitle());
-            binding.tvDescription.setText(data.getDetails());
+            String titile = data.getTitle();
+            String description = data.getDetails();
+            binding.tvTitle.setText(titile);
+            binding.tvDescription.setText(description);
             isPin = data.isPin();
             isArchip = data.isArcip();
+            isInput = !titile.isEmpty() || !description.isEmpty();
 
         } else if(dataView != null) {
             getSupportActionBar().setTitle(Constaint.TITLE_VIW_ONLY);
@@ -119,9 +160,7 @@ public class ActionsActivity extends AppCompatActivity {
 
             isEditlable(binding.tvTitle);
             isEditlable(binding.tvDescription);
-        } else
-            getSupportActionBar().setTitle(Constaint.TITLE_ADD);
-
+        } else getSupportActionBar().setTitle(Constaint.TITLE_ADD);
     }
 
     private void isEditlable(EditText editText) {
@@ -145,7 +184,7 @@ public class ActionsActivity extends AppCompatActivity {
 
         toDo = new ToDo(0, titile, description, isPin, isArchip, isDelete, Constaint.time());
 
-        if(dataView == null && (!titile.equals("") || !description.equals(""))) {
+        if(dataView == null && (!titile.isEmpty() || !description.isEmpty())) {
             if(data != null) {
                 toDo.setUid(data.getUid());
 
@@ -153,12 +192,12 @@ public class ActionsActivity extends AppCompatActivity {
                     getInstance().diskID().execute(() -> databases.toDoDao().update(toDo));
                     Toast.makeText(this, getString(R.string.str_message_change), Toast.LENGTH_SHORT).show();
                 }
-
             } else{
                 getInstance().diskID().execute(() -> databases.toDoDao().insert(toDo));
                 Toast.makeText(this, getString(R.string.str_message_save), Toast.LENGTH_SHORT).show();
             }
         }
+
     }
 
     @Override
@@ -183,32 +222,38 @@ public class ActionsActivity extends AppCompatActivity {
                 .getActionView()
                 .findViewById(findViewById);
 
-        tonggle.setChecked(isBoolean);
+        Log.d("LIA", String.valueOf(isInput));
+        if(isInput) {
+            tonggle.setEnabled(true);
+            tonggle.setChecked(isBoolean);
 
-        tonggle.setOnCheckedChangeListener((compoundButton, b) -> {
-            if(item.equals(Constaint.IS_PIN)) {
-                isPin = b;
-                isArchip = false;
+            tonggle.setOnCheckedChangeListener((compoundButton, b) -> {
+                if(item.equals(Constaint.IS_PIN)) {
+                    isPin = b;
+                    isArchip = false;
 
-                String message = "Data disematkan";
-                if(!isPin) message = "Sematan dilepas";
+                    String message = "Data disematkan";
+                    if(!isPin) message = "Sematan dilepas";
 
-                Snackbar.make(compoundButton, message, Snackbar.LENGTH_LONG)
-                        .setAction(Constaint.TITLE_RESTORE, null).show();
+                    Snackbar.make(compoundButton, message, Snackbar.LENGTH_LONG)
+                            .setAction(Constaint.TITLE_RESTORE, null).show();
 
-            } else if(item.equals(Constaint.IS_ARCHIVE)){
-                isArchip = b;
-                String message = "Data diarsipkan";
-                if(isPin) {
-                    message = "Data diarsipkan dan tidak dipasangi pin";
-                    isPin = false;
+                } else if(item.equals(Constaint.IS_ARCHIVE)){
+                    isArchip = b;
+                    String message = "Data diarsipkan";
+                    if(isPin) {
+                        message = "Data diarsipkan dan tidak dipasangi pin";
+                        isPin = false;
+                    }
+
+                    if(!isArchip) message = "Data batal diarsipkan";
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
-
-                if(!isArchip) message = "Data batal diarsipkan";
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                onBackPressed();
-            }
-        });
+            });
+        } else{
+            tonggle.setEnabled(false);
+        }
     }
 
 
