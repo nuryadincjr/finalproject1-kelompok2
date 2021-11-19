@@ -3,7 +3,6 @@ package com.nuryadincjr.todolist.activity;
 import static com.nuryadincjr.todolist.util.AppExecutors.getInstance;
 
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,8 +20,6 @@ import com.nuryadincjr.todolist.data.ToDoDatabases;
 import com.nuryadincjr.todolist.databinding.ActivityActionsBinding;
 import com.nuryadincjr.todolist.pojo.Constaint;
 import com.nuryadincjr.todolist.util.AdapterPreference;
-
-import java.util.Date;
 
 public class ActionsActivity extends AppCompatActivity {
 
@@ -56,21 +53,21 @@ public class ActionsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_edit, menu);
-        menu.findItem(R.id.actRestore).setVisible(false);
+        menu.findItem(R.id.act_restore).setVisible(false);
 
-        if(data == null) menu.findItem(R.id.actDeleteFix).setVisible(false);
+        if(data == null) menu.findItem(R.id.act_delete_fix).setVisible(false);
         if(dataView != null) {
-            menu.findItem(R.id.actArsip).setVisible(false);
-            menu.findItem(R.id.actPin).setVisible(false);
-            menu.findItem(R.id.actDelete).setVisible(false);
-            menu.findItem(R.id.actDeleteFix).setVisible(true);
-            menu.findItem(R.id.actRestore).setVisible(true);
-            menu.findItem(R.id.actShare).setVisible(false);
+            menu.findItem(R.id.act_arsip).setVisible(false);
+            menu.findItem(R.id.act_pin).setVisible(false);
+            menu.findItem(R.id.act_delete).setVisible(false);
+            menu.findItem(R.id.act_delete_fix).setVisible(true);
+            menu.findItem(R.id.act_restore).setVisible(true);
+            menu.findItem(R.id.act_share).setVisible(false);
         }
 
-        getTonggolButton(menu, R.id.actArsip, R.layout.btn_archive,
+        getTonggolButton(menu, R.id.act_arsip, R.layout.btn_archive,
                 R.id.btn_archive, isArchip, Constaint.IS_ARCHIVE);
-        getTonggolButton(menu, R.id.actPin, R.layout.btn_pin,
+        getTonggolButton(menu, R.id.act_pin, R.layout.btn_pin,
                 R.id.btn_pin, isPin, Constaint.IS_PIN);
         return true;
     }
@@ -81,21 +78,21 @@ public class ActionsActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.actDelete:
+            case R.id.act_delete:
                 isDelete = true;
                 onBackPressed();
                 return true;
-            case R.id.actDeleteFix:
+            case R.id.act_delete_fix:
                 if(data == null) data = dataView;
                 getInstance().diskID().execute(() -> databases.toDoDao().delete(data));
                 finish();
                 return true;
-            case R.id.actRestore:
+            case R.id.act_restore:
                 dataView.setDelete(false);
                 getInstance().diskID().execute(() -> databases.toDoDao().update(dataView));
                 finish();
                 return true;
-            case R.id.actShare:
+            case R.id.act_share:
                 if(!data.getTitle().equals("") && !data.getDetails().equals(""))
                     adapterPreference.shareData("Title: " + data.getTitle() + "\n\n" + data.getDetails());
                 else if(data.getTitle().equals("")) adapterPreference.shareData(data.getDetails());
@@ -129,7 +126,7 @@ public class ActionsActivity extends AppCompatActivity {
 
     private void isEditlable(EditText editText) {
         editText.setOnClickListener(v -> Snackbar.make(v,
-                "Tidak dapat mengedit dalam sampah", Snackbar.LENGTH_LONG)
+                getString(R.string.str_isedit), Snackbar.LENGTH_LONG)
                 .setAction(Constaint.TITLE_RESTORE, view -> {
                     dataView.setDelete(false);
                     getInstance().diskID().execute(() -> databases.toDoDao().update(dataView));
@@ -146,7 +143,7 @@ public class ActionsActivity extends AppCompatActivity {
             isArchip = false;
         }
 
-        toDo = new ToDo(0, titile, description, isPin, isArchip, isDelete, time());
+        toDo = new ToDo(0, titile, description, isPin, isArchip, isDelete, Constaint.time());
 
         if(dataView == null && (!titile.equals("") || !description.equals(""))) {
             if(data != null) {
@@ -154,12 +151,12 @@ public class ActionsActivity extends AppCompatActivity {
 
                 if(!data.equals(toDo)) {
                     getInstance().diskID().execute(() -> databases.toDoDao().update(toDo));
-                    Toast.makeText(this, "Data diubah", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.str_message_change), Toast.LENGTH_SHORT).show();
                 }
 
             } else{
                 getInstance().diskID().execute(() -> databases.toDoDao().insert(toDo));
-                Toast.makeText(this, "Data disimpan", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.str_message_save), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -214,9 +211,7 @@ public class ActionsActivity extends AppCompatActivity {
         });
     }
 
-    private String time() {
-        return DateFormat.format(Constaint.DATE_FORMAT, new Date()).toString();
-    }
+
 
     private void getAdapterPreference() {
         adapterPreference = new AdapterPreference(this) {

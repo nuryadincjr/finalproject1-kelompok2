@@ -6,12 +6,12 @@
     tools:context=".fragment.ArchipFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvToDo"
+            android:id="@+id/rv_todo"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

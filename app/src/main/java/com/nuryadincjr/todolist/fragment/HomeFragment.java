@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putString(Constaint.TITLE_BAR, "My to do list");
+        outState.putString(Constaint.TITLE_BAR, getString(R.string.str_home));
         super.onSaveInstanceState(outState);
     }
 
@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
             getActivity().runOnUiThread(() -> {
                 if(toDoListPin.size() != 0) {
                     binding.tvPin.setVisibility(View.VISIBLE);
-                    binding.rvToDoPin.setVisibility(View.VISIBLE);
+                    binding.rvTodoPin.setVisibility(View.VISIBLE);
 
                     if(toDoList.size() != 0) binding.tvOther.setVisibility(View.VISIBLE);
                     else binding.tvOther.setVisibility(View.GONE);
@@ -97,11 +97,11 @@ public class HomeFragment extends Fragment {
                 } else {
                     binding.tvPin.setVisibility(View.GONE);
                     binding.tvOther.setVisibility(View.GONE);
-                    binding.rvToDoPin.setVisibility(View.GONE);
+                    binding.rvTodoPin.setVisibility(View.GONE);
                 }
 
-                adapterPreference.getAdapters(toDoListPin, binding.rvToDoPin, spanCount);
-                adapterPreference.getAdapters(toDoList, binding.rvToDo, spanCount);
+                adapterPreference.getAdapters(toDoListPin, binding.rvTodoPin, spanCount);
+                adapterPreference.getAdapters(toDoList, binding.rvTodo, spanCount);
             });
         });
     }
@@ -112,28 +112,30 @@ public class HomeFragment extends Fragment {
             public void openMenuEditPopup(View view, ToDo toDo) {
                 PopupMenu menu = new PopupMenu(view.getContext(), view);
                 menu.getMenuInflater().inflate(R.menu.menu_edit, menu.getMenu());
-                menu.getMenu().findItem(R.id.actRestore).setVisible(false);
+                menu.getMenu().findItem(R.id.act_restore).setVisible(false);
 
-                if(toDo.isPin()) menu.getMenu().findItem(R.id.actPin).setTitle("Lepas sematan");
-                else  if(toDo.isArcip()) menu.getMenu().findItem(R.id.actArsip).setTitle("Lepas arsipan");
+                if(toDo.isPin()) menu.getMenu().findItem(R.id.act_pin)
+                        .setTitle(getString(R.string.str_unpin));
+                else  if(toDo.isArcip()) menu.getMenu().findItem(R.id.act_arsip)
+                        .setTitle(getString(R.string.str_unpin));
 
                 menu.setOnMenuItemClickListener(item -> {
                     switch (item.getItemId()) {
-                        case R.id.actPin:
+                        case R.id.act_pin:
                             if(toDo.isPin()) getPopupSelected(toDo, false, false, false);
                             else getPopupSelected(toDo, true, false, false);
                             break;
-                        case R.id.actArsip:
+                        case R.id.act_arsip:
                             if(toDo.isArcip()) getPopupSelected(toDo, false, false, false);
                             else getPopupSelected(toDo, false, false, true);
                             break;
-                        case R.id.actDelete:
+                        case R.id.act_delete:
                             getPopupSelected(toDo, false, true, false);
                             break;
-                        case R.id.actDeleteFix:
+                        case R.id.act_delete_fix:
                             deleteFix(toDo);
                             break;
-                        case R.id.actShare:
+                        case R.id.act_share:
                             if(!toDo.getTitle().equals("") && !toDo.getDetails().equals(""))
                                 shareData("Title: " + toDo.getTitle() + "\n\n" + toDo.getDetails());
                             else if(toDo.getTitle().equals("")) shareData(toDo.getDetails());
@@ -148,8 +150,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void openMenuEditToolsClick(View view, ToDo toDo) {
                 switch (view.getId()) {
-                    case R.id.tvTitleTask:
-                    case R.id.tvDetailTask:
+                    case R.id.tv_title_task:
+                    case R.id.tv_detail_task:
                         startActivity(new Intent(getContext(), ActionsActivity.class)
                                 .putExtra(Constaint.TITLE_CHANGE, toDo));
                         break;

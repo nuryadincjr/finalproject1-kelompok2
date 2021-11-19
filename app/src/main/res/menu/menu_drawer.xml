@@ -4,32 +4,32 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/homeMenu"
+        <item android:id="@+id/home_menu"
             android:icon="@drawable/ic_home"
-            android:title="My To Do List"/>
+            android:title="@string/str_home"/>
     </group>
 
-    <item android:title="Tools">
+    <item android:title="@string/str_tools">
         <menu>
-            <item android:id="@+id/archipMenu"
+            <item android:id="@+id/archip_menu"
                 android:icon="@drawable/ic_archive_fild"
-                android:title="Arsip"/>
+                android:title="@string/str_archip_menu"/>
 
-            <item android:id="@+id/trashMenu"
+            <item android:id="@+id/trash_menu"
                 android:icon="@drawable/ic_trash"
-                android:title="Sampah"/>
+                android:title="@string/str_trash_menu"/>
         </menu>
     </item>
 
-    <item android:title="Other">
+    <item android:title="@string/str_other">
         <menu>
-            <item android:id="@+id/settingsMenu"
+            <item android:id="@+id/settings_menu"
                 android:icon="@drawable/ic_baseline_settings"
-                android:title="Pengaturan"/>
+                android:title="@string/str_settings_menu"/>
 
-            <item android:id="@+id/aboutMenu"
+            <item android:id="@+id/about_menu"
                 android:icon="@drawable/ic_baseline_info"
-                android:title="Tentang"/>
+                android:title="@string/str_about_menu"/>
         </menu>
     </item>
 

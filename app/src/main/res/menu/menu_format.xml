@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/actFormat"
+        android:id="@+id/act_format"
         android:icon="@drawable/ic_trash"
-        android:title="Kosongkan tempat sampah"
+        android:title="@string/str_format"
         app:actionLayout="@layout/btn_view"
         app:showAsAction="never" />
 </menu>

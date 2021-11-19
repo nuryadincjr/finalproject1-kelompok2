@@ -70,19 +70,19 @@ public class SettingsActivity extends AppCompatActivity {
     private void getBtnListener(ImageButton button) {
         button.setOnClickListener(view -> getInstance().diskID().execute(() -> {
             switch (button.getId()) {
-                case R.id.btnDataCount:
+                case R.id.btn_data_count:
                     getDeleteOf(databases.toDoDao().deleteAll());
                     break;
-                case R.id.btnDataList:
+                case R.id.btn_data_list:
                     getDeleteOf(databases.toDoDao().deleteAllList());
                     break;
-                case R.id.btnDataPin:
+                case R.id.btn_data_pin:
                     getDeleteOf(databases.toDoDao().deleteAllPin());
                     break;
-                case R.id.btnDataArchive:
+                case R.id.btn_data_archive:
                     getDeleteOf(databases.toDoDao().deleteAllArchip());
                     break;
-                case R.id.btnDataTrash:
+                case R.id.btn_data_trash:
                     getDeleteOf(databases.toDoDao().deleteAllTrash());
                     break;
             }

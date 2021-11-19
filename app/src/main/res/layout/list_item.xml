@@ -1,48 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/bg_item_rounded" >
+    android:layout_marginTop="@dimen/small_margin"
+    android:layout_marginBottom="@dimen/medium_margin"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvTitleTask"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_title"
-        android:padding="20dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        tools:text="Final Project 1" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvEdited"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:drawableRightCompat="@drawable/ic_more"
-        tools:ignore="TextContrastCheck"
-        tools:text="Diedit 07.00" />
+        <TextView
+            android:id="@+id/tv_title_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_title"
+            android:paddingTop="@dimen/big_padding"
+            android:paddingBottom="@dimen/big_padding"
+            android:paddingLeft="@dimen/small_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:textColor="@color/black"
+            android:textSize="@dimen/medium_size"
+            android:textStyle="bold"
+            tools:text="Final Project 1" />
 
-    <TextView
-        android:id="@+id/tvDetailTask"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitleTask"
-        android:ellipsize="end"
-        android:maxLines="20"
-        android:padding="10dp"
-        android:text="@string/str_lorem"
-        android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/tv_edited"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:padding="@dimen/small_padding"
+            android:textColor="@color/white"
+            android:textSize="@dimen/smal_size"
+            app:drawableRightCompat="@drawable/ic_more"
+            tools:ignore="TextContrastCheck"
+            tools:text="Diedit 07.00" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_detail_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title_task"
+            android:background="?selectableItemBackground"
+            android:ellipsize="end"
+            android:maxLines="20"
+            android:padding="@dimen/small_padding"
+            android:text="@string/str_lorem"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -3,38 +3,38 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/actPin"
-        android:title="Sematkan"
+        android:id="@+id/act_pin"
+        android:title="@string/str_pin"
         app:actionLayout="@layout/btn_pin"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/actArsip"
+        android:id="@+id/act_arsip"
         android:icon="@drawable/ic_archive"
         app:actionLayout="@layout/btn_archive"
-        android:title="Arsipkan"
+        android:title="@string/str_archip"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/actDelete"
+        android:id="@+id/act_delete"
         android:icon="@drawable/ic_untrash"
-        android:title="Pindah tempat sampah"
+        android:title="@string/str_delete"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/actRestore"
+        android:id="@+id/act_restore"
         android:icon="@drawable/ic_untrash"
-        android:title="Pulihkan"
+        android:title="@string/str_restore"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/actDeleteFix"
+        android:id="@+id/act_delete_fix"
         android:icon="@drawable/ic_trash"
-        android:title="Hapus permanen"
+        android:title="@string/str_delete_fix"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/actShare"
+        android:id="@+id/act_share"
         android:icon="@drawable/ic_trash"
-        android:title="Bagikan"
+        android:title="@string/str_share"
         app:showAsAction="never"/>
 </menu>

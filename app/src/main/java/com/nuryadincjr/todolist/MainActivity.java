@@ -15,7 +15,6 @@ import com.nuryadincjr.todolist.activity.*;
 import com.nuryadincjr.todolist.fragment.*;
 import com.google.android.material.navigation.NavigationView;
 import com.nuryadincjr.todolist.databinding.ActivityMainBinding;
-import com.nuryadincjr.todolist.pojo.Constaint;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity
 
         binding.navigationView.setNavigationItemSelectedListener(this);
         if(savedInstanceState == null) {
-            binding.navigationView.setCheckedItem(R.id.homeMenu);
+            binding.navigationView.setCheckedItem(R.id.home_menu);
             getFragmentPage(new HomeFragment(),this);
         }
     }
@@ -45,22 +44,22 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.homeMenu:
+            case R.id.home_menu:
                 getFragmentPage(new HomeFragment(), this);
-                getSupportActionBar().setTitle("My to do list");
+                getSupportActionBar().setTitle(R.string.str_home);
                 break;
-            case R.id.archipMenu:
+            case R.id.archip_menu:
                 getFragmentPage(new ArchipFragment(), this);
-                getSupportActionBar().setTitle("Arsip");
+                getSupportActionBar().setTitle(R.string.str_archip_menu);
                 break;
-            case R.id.trashMenu:
-                getSupportActionBar().setTitle("Sampah");
+            case R.id.trash_menu:
+                getSupportActionBar().setTitle(R.string.str_trash_menu);
                 getFragmentPage(new TrashFragment(), this);
                 break;
-            case R.id.settingsMenu:
+            case R.id.settings_menu:
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
-            case R.id.aboutMenu:
+            case R.id.about_menu:
                 startActivity(new Intent(this, AboutActivity.class));
                 break;
         }

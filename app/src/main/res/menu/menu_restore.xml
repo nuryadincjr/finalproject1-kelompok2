@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/actRestore"
+        android:id="@+id/act_restore"
         android:icon="@drawable/ic_untrash"
-        android:title="Pulihkan" />
+        android:title="@string/str_restore" />
 
     <item
-        android:id="@+id/actDeleteFix"
+        android:id="@+id/act_delete_fix"
         android:icon="@drawable/ic_trash"
-        android:title="Hapus Permanen" />
+        android:title="@string/str_delete_fix" />
 
 </menu>

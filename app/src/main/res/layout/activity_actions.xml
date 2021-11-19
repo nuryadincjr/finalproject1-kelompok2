@@ -26,12 +26,12 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:hint="Title"
+                android:hint="@string/str_title"
                 tools:text="Final Project 1"
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                android:textSize="24sp"
+                android:textSize="@dimen/big_size"
                 android:textStyle="bold"
                 android:background="@android:color/transparent"/>
 
@@ -41,12 +41,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                android:hint="Description"
-                android:textSize="18sp"
+                android:hint="@string/str_description"
+                android:textSize="@dimen/medium_size"
                 tools:text="@string/str_lorem"
                 android:background="@android:color/transparent" />
 
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

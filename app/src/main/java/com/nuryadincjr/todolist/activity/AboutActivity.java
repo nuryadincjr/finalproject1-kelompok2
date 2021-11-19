@@ -24,8 +24,8 @@ public class AboutActivity extends AppCompatActivity {
         binding = ActivityAboutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getPortofoloi(binding.tvPortofolo1, "https://github.com/amrimarihotjati");
-        getPortofoloi(binding.tvPortofolo2, "https://github.com/nuryadincjr");
+        getPortofoloi(binding.tvPortofolo1, getString(R.string.str_portofoliourl1));
+        getPortofoloi(binding.tvPortofolo2, getString(R.string.str_portofoliourl2));
     }
 
     private void getPortofoloi(TextView view, String url) {

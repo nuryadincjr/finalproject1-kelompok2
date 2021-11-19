@@ -1,69 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/small_padding"
     tools:context=".activity.AboutActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
 
             <ImageView
-                android:id="@+id/ivBrand"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
-                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/app_name"
                 app:srcCompat="@drawable/ic_brand" />
 
             <TextView
-                android:id="@+id/tvBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/ivBrand"
                 android:text="@string/app_name"
+                android:textColor="@color/green"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="@color/green"/>
-
-            <EditText
-                android:id="@+id/tvDetail"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@+id/tvBrand"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/bg_item_rounded"
-                android:justificationMode="inter_word"
-                android:padding="@dimen/small_padding"
-                android:scrollbars="vertical"
-                android:focusable="false"
-                android:textColor="@color/black"
-                tools:targetApi="o"
-                android:text="@string/str_lorem"
-                tools:text="@string/str_lorem" />
+                tools:ignore="TextContrastCheck" />
 
             <TextView
-                android:id="@+id/tvContribtor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvDetail"
+                android:layout_marginTop="20dp"
+                android:text="@string/str_team_member_2"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_mitra"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/big_margin"
                 android:layout_marginBottom="@dimen/medium_margin"
-                android:text="Kontributor:" />
+                android:text="@string/str_kontributor" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvContribtor"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -76,31 +77,29 @@
                         android:id="@+id/tvName1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Amri Marihot Jati"
-                        android:textSize="@dimen/medium_size"
+                        android:text="@string/str_kon1"
                         android:textColor="@color/black"
+                        android:textSize="@dimen/medium_size"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvUniversitas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="STIE Indonesia Bankong School"
-                        android:textSize="@dimen/smal_size"
+                        android:text="@string/str_univ1"
                         android:textColor="@color/black"
+                        android:textSize="@dimen/smal_size"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvPortofolo1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="\@amrimarihotjati"
+                        android:text="@string/str_portofolio1"
                         android:textColor="@color/orange"
                         android:textSize="@dimen/medium_size"
                         android:textStyle="bold" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -113,29 +112,26 @@
                         android:id="@+id/tvName2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Nuryadin Abutani"
-                        android:textSize="@dimen/medium_size"
+                        android:text="@string/str_kon2"
                         android:textColor="@color/black"
+                        android:textSize="@dimen/medium_size"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvUniversitas2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Sekolah Tinggi Teknologi Bandng"
-                        android:textSize="@dimen/smal_size"
+                        android:text="@string/str_univ2"
                         android:textColor="@color/black"
+                        android:textSize="@dimen/smal_size"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvPortofolo2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:linksClickable="true"
-                        android:text="\@nuryadincjr"
+                        android:text="@string/str_portofolio2"
                         android:textColor="@color/orange"
                         android:textSize="@dimen/medium_size"
                         android:textStyle="bold" />
@@ -144,8 +140,8 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </ScrollView>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

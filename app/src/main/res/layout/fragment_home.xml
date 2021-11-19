@@ -7,7 +7,7 @@
     tools:context=".fragment.HomeFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,13 +21,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvPin"
+                    android:id="@+id/tv_pin"
                     style="@style/ViewText"
-                    android:text="Dipasangi Pin"
+                    android:text="@string/str_pin_lable"
                     android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvToDoPin"
+                    android:id="@+id/rv_todo_pin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone">
@@ -35,17 +35,18 @@
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <TextView
-                    android:id="@+id/tvOther"
+                    android:id="@+id/tv_other"
                     style="@style/ViewText"
-                    android:text="Lainnya"
+                    android:text="@string/str_other"
                     android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvToDo"
+                    android:id="@+id/rv_todo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_height="wrap_content" />
+
             </LinearLayout>
+
         </ScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -55,9 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/medium_margin"
         android:backgroundTint="@color/orange"
-        android:contentDescription="Add"
+        android:contentDescription="@string/str_add"
+        android:tint="@color/white"
         android:focusableInTouchMode="false"
         android:src="@drawable/ic_add"
         tools:ignore="TouchTargetSizeCheck" />

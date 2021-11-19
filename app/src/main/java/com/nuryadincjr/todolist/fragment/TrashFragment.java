@@ -50,6 +50,7 @@ public class TrashFragment extends Fragment {
 
         databases = ToDoDatabases.getInstance(getContext());
 
+        binding.swipeRefresh.setColorSchemeResources(R.color.orange);
         binding.swipeRefresh.setOnRefreshListener(() -> {
             getData();
             binding.swipeRefresh.setRefreshing(false);
@@ -73,7 +74,7 @@ public class TrashFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.actFormat) {
+        if (item.getItemId() == R.id.act_format) {
             getInstance().diskID().execute(() -> databases.toDoDao().deleteAllTrash());
             getData();
             return true;
@@ -83,7 +84,7 @@ public class TrashFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putString(Constaint.TITLE_BAR, "Sampah");
+        outState.putString(Constaint.TITLE_BAR, getString(R.string.str_trash_menu));
         super.onSaveInstanceState(outState);
     }
 
@@ -91,7 +92,7 @@ public class TrashFragment extends Fragment {
         getInstance().mainThread().execute(() -> {
             List<ToDo> toDoList = databases.toDoDao().getAllTrash();
             getActivity().runOnUiThread(() ->
-                    adapterPreference.getAdapters(toDoList, binding.rvToDo, 1));
+                    adapterPreference.getAdapters(toDoList, binding.rvTodo, 1));
         });
     }
 
@@ -102,15 +103,17 @@ public class TrashFragment extends Fragment {
                 PopupMenu menu = new PopupMenu(view.getContext(), view);
                 menu.getMenuInflater().inflate(R.menu.menu_restore, menu.getMenu());
 
-                if(toDo.isPin()) menu.getMenu().findItem(R.id.actPin).setTitle("Lepas sematan");
-                else  if(toDo.isArcip()) menu.getMenu().findItem(R.id.actArsip).setTitle("Lepas arsipan");
+                if(toDo.isPin()) menu.getMenu().findItem(R.id.act_pin)
+                        .setTitle(getString(R.string.str_unpin));
+                else if(toDo.isArcip()) menu.getMenu().findItem(R.id.act_arsip)
+                        .setTitle(getString(R.string.str_unarchip));
 
                 menu.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
-                    case R.id.actRestore:
+                    case R.id.act_restore:
                         getPopupSelected(toDo, false, false, false);
                         break;
-                    case R.id.actDeleteFix:
+                    case R.id.act_delete_fix:
                         deleteFix(toDo);
                         break;
                     }
@@ -122,8 +125,8 @@ public class TrashFragment extends Fragment {
             @Override
             public void openMenuEditToolsClick(View view, ToDo toDo) {
                 switch (view.getId()) {
-                    case R.id.tvTitleTask:
-                    case R.id.tvDetailTask:
+                    case R.id.tv_title_task:
+                    case R.id.tv_detail_task:
                         startActivity(new Intent(getContext(), ActionsActivity.class)
                                 .putExtra(Constaint.TITLE_VIW_ONLY, toDo));
                         break;

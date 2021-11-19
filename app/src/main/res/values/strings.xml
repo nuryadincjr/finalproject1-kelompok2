@@ -14,14 +14,56 @@
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="str_add_task">Add Task</string>
 
-    <string name="str_lorem">Lorem Ipsum is fdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="navigation_open">Open navigation drawer</string>
     <string name="navigation_close">Close navigation drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_add_task">Add Task</string>
+    <string name="str_lorem">Lorem Ipsum is fdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy textfdsf dsfsimply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="str_team_member_2">Team Member 2</string>
+    <string name="str_mitra">Kampus Merdeka Hacktiv8</string>
+    <string name="str_unpin">Lepas sematan</string>
+    <string name="str_unarchip">Lepas arsipan</string>
+    <string name="str_kontributor">Kontributor:</string>
+    <string name="str_kon1">Amri Marihot Jati</string>
+    <string name="str_univ1">STIE Indonesia Banking School</string>
+    <string name="str_portofolio1">\@amrimarihotjati</string>
+    <string name="str_portofoliourl1">https://github.com/amrimarihotjati</string>
+    <string name="str_kon2">Nuryadin Abutani</string>
+    <string name="str_univ2">Sekolah Tinggi Teknologi Bandng</string>
+    <string name="str_portofolio2">\@nuryadincjr</string>
+    <string name="str_portofoliourl2">https://github.com/nuryadincjr</string>
+    <string name="str_search">Search</string>
+    <string name="str_isedit">Tidak dapat mengedit dalam sampah</string>
+    <string name="str_view">View</string>
+    <string name="str_search_hint">Type here to search</string>
+    <string name="str_restore">Pulihkan</string>
+    <string name="str_message_save">Data disimpan</string>
+    <string name="str_message_change">Data diubah</string>
+    <string name="str_delete_fix">Hapus Permanen</string>
+    <string name="str_format">Kosongkan tempat sampah</string>
+    <string name="str_pin">Sematkan</string>
+    <string name="str_archip">Arsipkan</string>
+    <string name="str_archip_menu">Arsip</string>
+    <string name="str_delete">Pindah tempat sampah</string>
+    <string name="str_share">Bagikan</string>
+    <string name="str_home">My To Do List</string>
+    <string name="str_tools">Tools</string>
+    <string name="str_trash_menu">Sampah</string>
+    <string name="str_other">Other</string>
+    <string name="str_settings_menu">Pengaturan</string>
+    <string name="str_about_menu">Tentang</string>
+    <string name="str_tagline">Create your to do list</string>
+    <string name="str_contributors">By Program Studi Independen</string>
+    <string name="str_pin_lable">Dipasangi Pin</string>
+    <string name="str_add">Add</string>
+    <string name="str_jumlah_data">Jumlah data</string>
+    <string name="str_jumlah_list">Jumlah List</string>
+    <string name="str_jumlah_pin">Jumlah Pin</string>
+    <string name="str_jumlah_archive">Jumlah Archive</string>
+    <string name="str_jumlah_trash">Jumlah Trash</string>
+    <string name="str_title">Title</string>
+    <string name="str_description">Description</string>
 </resources>
