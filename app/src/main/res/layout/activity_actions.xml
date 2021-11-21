@@ -21,7 +21,7 @@
             android:padding="@dimen/small_padding">
 
             <EditText
-                android:id="@+id/tvTitle"
+                android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
@@ -30,13 +30,13 @@
                 tools:text="Final Project 1"
                 android:ems="10"
                 android:gravity="start|top"
-                android:inputType="textMultiLine"
+                android:inputType="text"
                 android:textSize="@dimen/big_size"
                 android:textStyle="bold"
                 android:background="@android:color/transparent"/>
 
             <EditText
-                android:id="@+id/tvDescription"
+                android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|top"

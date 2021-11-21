@@ -74,7 +74,7 @@ public class TrashFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.act_format) {
+        if (item.getItemId() == R.id.itemFormat) {
             getInstance().diskID().execute(() -> databases.toDoDao().deleteAllTrash());
             getData();
             return true;
@@ -103,17 +103,17 @@ public class TrashFragment extends Fragment {
                 PopupMenu menu = new PopupMenu(view.getContext(), view);
                 menu.getMenuInflater().inflate(R.menu.menu_restore, menu.getMenu());
 
-                if(toDo.isPin()) menu.getMenu().findItem(R.id.act_pin)
+                if(toDo.isPin()) menu.getMenu().findItem(R.id.itemPin)
                         .setTitle(getString(R.string.str_unpin));
-                else if(toDo.isArcip()) menu.getMenu().findItem(R.id.act_arsip)
+                else if(toDo.isArcip()) menu.getMenu().findItem(R.id.itemArsip)
                         .setTitle(getString(R.string.str_unarchip));
 
                 menu.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
-                    case R.id.act_restore:
+                    case R.id.itemRestore:
                         getPopupSelected(toDo, false, false, false);
                         break;
-                    case R.id.act_delete_fix:
+                    case R.id.itemDeleteFix:
                         deleteFix(toDo);
                         break;
                     }
@@ -125,8 +125,8 @@ public class TrashFragment extends Fragment {
             @Override
             public void openMenuEditToolsClick(View view, ToDo toDo) {
                 switch (view.getId()) {
-                    case R.id.tv_title_task:
-                    case R.id.tv_detail_task:
+                    case R.id.tvTitleTask:
+                    case R.id.tvDetailTask:
                         startActivity(new Intent(getContext(), ActionsActivity.class)
                                 .putExtra(Constaint.TITLE_VIW_ONLY, toDo));
                         break;

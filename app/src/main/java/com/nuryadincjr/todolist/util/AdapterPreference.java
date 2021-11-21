@@ -59,8 +59,8 @@ public abstract class AdapterPreference {
 
     private void openMenuEditToolsLongClick(View view, ToDo toDo) {
         switch (view.getId()) {
-            case R.id.tv_title_task:
-            case R.id.tv_detail_task:
+            case R.id.tvTitleTask:
+            case R.id.tvDetailTask:
                 openMenuEditPopup(view, toDo);
                 break;
         }
@@ -96,7 +96,7 @@ public abstract class AdapterPreference {
 
     public void getOnCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater, boolean isView) {
         inflater.inflate(R.menu.menu_view, menu);
-        SearchView searchView = (SearchView) menu.findItem(R.id.act_search).getActionView();
+        SearchView searchView = (SearchView) menu.findItem(R.id.itemSearch).getActionView();
         searchView.setQueryHint(context.getString(R.string.str_search_hint));
         searchView.onActionViewExpanded();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -112,9 +112,9 @@ public abstract class AdapterPreference {
             }
         });
 
-        ToggleButton tonggle = menu.findItem(R.id.act_view)
+        ToggleButton tonggle = menu.findItem(R.id.itemView)
                 .setActionView(R.layout.btn_view)
-                .getActionView().findViewById(R.id.btn_view);
+                .getActionView().findViewById(R.id.tbView);
         tonggle.setChecked(isView);
         tonggle.setOnCheckedChangeListener((compoundButton, b) -> {
             localPreference.getEditor().putBoolean(Constaint.IS_VIEW, b).apply();

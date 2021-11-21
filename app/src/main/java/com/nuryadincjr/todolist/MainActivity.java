@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity
                 binding.drawerLayout, binding.toolbar,
                 R.string.navigation_open, R.string.navigation_close).syncState();
 
-        binding.navigationView.setNavigationItemSelectedListener(this);
+        binding.nvPanel.setNavigationItemSelectedListener(this);
         if(savedInstanceState == null) {
-            binding.navigationView.setCheckedItem(R.id.home_menu);
+            binding.nvPanel.setCheckedItem(R.id.itemHome);
             getFragmentPage(new HomeFragment(),this);
         }
     }
@@ -44,22 +44,22 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.home_menu:
+            case R.id.itemHome:
                 getFragmentPage(new HomeFragment(), this);
                 getSupportActionBar().setTitle(R.string.str_home);
                 break;
-            case R.id.archip_menu:
+            case R.id.itemArchip:
                 getFragmentPage(new ArchipFragment(), this);
                 getSupportActionBar().setTitle(R.string.str_archip_menu);
                 break;
-            case R.id.trash_menu:
+            case R.id.itemTrash:
                 getSupportActionBar().setTitle(R.string.str_trash_menu);
                 getFragmentPage(new TrashFragment(), this);
                 break;
-            case R.id.settings_menu:
+            case R.id.itemSettings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
-            case R.id.about_menu:
+            case R.id.itemAbout:
                 startActivity(new Intent(this, AboutActivity.class));
                 break;
         }
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
         if (fragment != null) {
             ((FragmentActivity)context).getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
+                    .replace(R.id.flFragmentContainer, fragment)
                     .commit();
             return true;
         }

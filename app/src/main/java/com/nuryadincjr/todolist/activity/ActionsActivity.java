@@ -52,24 +52,24 @@ public class ActionsActivity extends AppCompatActivity {
 
         isData();
 
-        onInputListener(binding.tvDescription);
-        onInputListener(binding.tvTitle);
+        onInputListener(binding.etDescription);
+        onInputListener(binding.etTitle);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_edit, menu);
-        menu.findItem(R.id.act_restore).setVisible(false);
+        menu.findItem(R.id.itemRestore).setVisible(false);
         this.menu = menu;
 
-        if(data == null) menu.findItem(R.id.act_delete_fix).setVisible(false);
+        if(data == null) menu.findItem(R.id.itemDeleteFix).setVisible(false);
         if(dataView != null) {
-            menu.findItem(R.id.act_arsip).setVisible(false);
-            menu.findItem(R.id.act_pin).setVisible(false);
-            menu.findItem(R.id.act_delete).setVisible(false);
-            menu.findItem(R.id.act_delete_fix).setVisible(true);
-            menu.findItem(R.id.act_restore).setVisible(true);
-            menu.findItem(R.id.act_share).setVisible(false);
+            menu.findItem(R.id.itemArsip).setVisible(false);
+            menu.findItem(R.id.itemPin).setVisible(false);
+            menu.findItem(R.id.itemDelete).setVisible(false);
+            menu.findItem(R.id.itemDeleteFix).setVisible(true);
+            menu.findItem(R.id.itemRestore).setVisible(true);
+            menu.findItem(R.id.itemShare).setVisible(false);
         }
 
         isEdited(menu);
@@ -82,21 +82,21 @@ public class ActionsActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.act_delete:
+            case R.id.itemDelete:
                 isDelete = true;
                 onBackPressed();
                 return true;
-            case R.id.act_delete_fix:
+            case R.id.itemDeleteFix:
                 if(data == null) data = dataView;
                 getInstance().diskID().execute(() -> databases.toDoDao().delete(data));
                 finish();
                 return true;
-            case R.id.act_restore:
+            case R.id.itemRestore:
                 dataView.setDelete(false);
                 getInstance().diskID().execute(() -> databases.toDoDao().update(dataView));
                 finish();
                 return true;
-            case R.id.act_share:
+            case R.id.itemShare:
                 if(!data.getTitle().equals("") && !data.getDetails().equals(""))
                     adapterPreference.shareData("Title: " + data.getTitle() + "\n\n" + data.getDetails());
                 else if(data.getTitle().equals("")) adapterPreference.shareData(data.getDetails());
@@ -127,17 +127,17 @@ public class ActionsActivity extends AppCompatActivity {
 
     private void isEdited(Menu menu) {
         if (isInput) {
-            menu.findItem(R.id.act_delete).setEnabled(true);
-            menu.findItem(R.id.act_share).setEnabled(true);
+            menu.findItem(R.id.itemDelete).setEnabled(true);
+            menu.findItem(R.id.itemShare).setEnabled(true);
         } else {
-            menu.findItem(R.id.act_delete).setEnabled(false);
-            menu.findItem(R.id.act_share).setEnabled(false);
+            menu.findItem(R.id.itemDelete).setEnabled(false);
+            menu.findItem(R.id.itemShare).setEnabled(false);
         }
 
-        getTonggolButton(menu, R.id.act_arsip, R.layout.btn_archive,
-                R.id.btn_archive, isArchip, Constaint.IS_ARCHIVE);
-        getTonggolButton(menu, R.id.act_pin, R.layout.btn_pin,
-                R.id.btn_pin, isPin, Constaint.IS_PIN);
+        getTonggolButton(menu, R.id.itemArsip, R.layout.btn_archive,
+                R.id.tbArchive, isArchip, Constaint.IS_ARCHIVE);
+        getTonggolButton(menu, R.id.itemPin, R.layout.btn_pin,
+                R.id.tb_Pin, isPin, Constaint.IS_PIN);
     }
 
     private void isData() {
@@ -145,21 +145,21 @@ public class ActionsActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(Constaint.TITLE_CHANGE);
             String titile = data.getTitle();
             String description = data.getDetails();
-            binding.tvTitle.setText(titile);
-            binding.tvDescription.setText(description);
+            binding.etTitle.setText(titile);
+            binding.etDescription.setText(description);
             isPin = data.isPin();
             isArchip = data.isArcip();
             isInput = !titile.isEmpty() || !description.isEmpty();
 
         } else if(dataView != null) {
             getSupportActionBar().setTitle(Constaint.TITLE_VIW_ONLY);
-            binding.tvTitle.setText(dataView.getTitle());
-            binding.tvDescription.setText(dataView.getDetails());
-            binding.tvTitle.setFocusable(false);
-            binding.tvDescription.setFocusable(false);
+            binding.etTitle.setText(dataView.getTitle());
+            binding.etDescription.setText(dataView.getDetails());
+            binding.etTitle.setFocusable(false);
+            binding.etDescription.setFocusable(false);
 
-            isEditlable(binding.tvTitle);
-            isEditlable(binding.tvDescription);
+            isEditlable(binding.etTitle);
+            isEditlable(binding.etDescription);
         } else getSupportActionBar().setTitle(Constaint.TITLE_ADD);
     }
 
@@ -174,8 +174,8 @@ public class ActionsActivity extends AppCompatActivity {
     }
 
     private void actionCreateUpdate() {
-        String titile = binding.tvTitle.getText().toString();
-        String description = binding.tvDescription.getText().toString();
+        String titile = binding.etTitle.getText().toString();
+        String description = binding.etDescription.getText().toString();
 
         if(isDelete) {
             isPin = false;

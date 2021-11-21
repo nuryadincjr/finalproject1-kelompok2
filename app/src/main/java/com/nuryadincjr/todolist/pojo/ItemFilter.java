@@ -20,7 +20,8 @@ public class ItemFilter extends Filter {
             filterList.addAll(toDoAdapter.filteredData);
         } else {
             for (ToDo toDo: toDoAdapter.filteredData) {
-                if (toDo.getTitle().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                if (toDo.getTitle().toLowerCase().contains(constraint.toString().toLowerCase()) ||
+                        toDo.getDetails().toLowerCase().contains(constraint.toString().toLowerCase())) {
                     filterList.add(toDo);
                 }
             }

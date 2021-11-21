@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/act_format"
+        android:id="@+id/itemFormat"
         android:icon="@drawable/ic_trash"
         android:title="@string/str_format"
         app:actionLayout="@layout/btn_view"

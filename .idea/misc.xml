@@ -19,8 +19,12 @@
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.21614583333333334" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_more.xml" value="0.21614583333333334" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_pin.xml" value="0.21614583333333334" />
+        <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_search.xml" value="0.21614583333333334" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.21614583333333334" />
+        <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_share.xml" value="0.21614583333333334" />
+        <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_trash.xml" value="0.21614583333333334" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_unarchive.xml" value="0.21614583333333334" />
+        <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_unpin.xml" value="0.21614583333333334" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_untrash.xml" value="0.21614583333333334" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_view_gird.xml" value="0.21614583333333334" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/ic_view_linier.xml" value="0.21614583333333334" />
@@ -30,10 +34,10 @@
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/drawable/selector_view.xml" value="0.21614583333333334" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/activity_about.xml" value="0.25" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/activity_actions.xml" value="0.2" />
-        <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/activity_search.xml" value="0.2" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/activity_settings.xml" value="0.18" />
-        <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/activity_splash_screen.xml" value="0.12" />
+        <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/activity_splash_screen.xml" value="0.5333333333333333" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/activity_tes_main.xml" value="0.2" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/btn_archive.xml" value="0.2" />
         <entry key="..\:/ProjectMe/Kampus Merdeka/Final Project 1/ToDoList/app/src/main/res/layout/btn_delete.xml" value="0.2" />

@@ -7,7 +7,7 @@
     tools:context=".fragment.HomeFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,13 +21,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_pin"
+                    android:id="@+id/tvPin"
                     style="@style/ViewText"
                     android:text="@string/str_pin_lable"
                     android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_todo_pin"
+                    android:id="@+id/rvTodoPin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone">
@@ -35,13 +35,13 @@
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <TextView
-                    android:id="@+id/tv_other"
+                    android:id="@+id/tvOther"
                     style="@style/ViewText"
                     android:text="@string/str_other"
                     android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_todo"
+                    android:id="@+id/rvTodo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -52,16 +52,14 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/medium_margin"
-        android:backgroundTint="@color/orange"
         android:contentDescription="@string/str_add"
-        tools:tint="@color/white"
+        app:tint="@color/white"
         android:focusableInTouchMode="false"
-        android:src="@drawable/ic_add"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:src="@drawable/ic_add" />
 
-</FrameLayout>
+0</FrameLayout>

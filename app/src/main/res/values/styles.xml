@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">@color/white</color>
+
+    <style name="Theme.ToDoList.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Layouting-->
+    <style name="ViewText" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <style name="TonggolSelector" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:textOff" />
+        <item name="android:textOn" />
+    </style>
+
+    <style name="SettingsList" parent="CardView.Dark">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/small_padding</item>
+        <item name="android:background">@drawable/bg_list</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">@dimen/small_padding</item>
+    </style>
+
+    <style name="SetingView" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/big_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SetingButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:background">@drawable/selector_delete</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:text">Button</item>
+    </style>
+</resources>

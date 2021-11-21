@@ -27,11 +27,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         databases = ToDoDatabases.getInstance(this);
 
-        getBtnListener(binding.btnDataCount);
-        getBtnListener(binding.btnDataList);
-        getBtnListener(binding.btnDataPin);
-        getBtnListener(binding.btnDataArchive);
-        getBtnListener(binding.btnDataTrash);
+        getBtnListener(binding.ibDeleteCount);
+        getBtnListener(binding.ibDeleteList);
+        getBtnListener(binding.ibDeletePin);
+        getBtnListener(binding.ibDeleteArchive);
+        getBtnListener(binding.ibDeleteTrash);
     }
 
     @Override
@@ -70,19 +70,19 @@ public class SettingsActivity extends AppCompatActivity {
     private void getBtnListener(ImageButton button) {
         button.setOnClickListener(view -> getInstance().diskID().execute(() -> {
             switch (button.getId()) {
-                case R.id.btn_data_count:
+                case R.id.ibDeleteCount:
                     getDeleteOf(databases.toDoDao().deleteAll());
                     break;
-                case R.id.btn_data_list:
+                case R.id.ibDeleteList:
                     getDeleteOf(databases.toDoDao().deleteAllList());
                     break;
-                case R.id.btn_data_pin:
+                case R.id.ibDeletePin:
                     getDeleteOf(databases.toDoDao().deleteAllPin());
                     break;
-                case R.id.btn_data_archive:
+                case R.id.ibDeleteArchive:
                     getDeleteOf(databases.toDoDao().deleteAllArchip());
                     break;
-                case R.id.btn_data_trash:
+                case R.id.ibDeleteTrash:
                     getDeleteOf(databases.toDoDao().deleteAllTrash());
                     break;
             }

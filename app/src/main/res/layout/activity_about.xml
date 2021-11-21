@@ -59,6 +59,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/big_margin"
                 android:layout_marginBottom="@dimen/medium_margin"
+                android:textSize="@dimen/medium_size"
+                android:textStyle="bold"
                 android:text="@string/str_kontributor" />
 
             <LinearLayout
@@ -74,7 +76,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_name1"
+                        android:id="@+id/tvNameMember1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/str_kon1"
@@ -83,7 +85,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvUniversitas"
+                        android:id="@+id/tvUniversitas1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/str_univ1"
@@ -109,7 +111,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvName2"
+                        android:id="@+id/tvNameMember2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/str_kon2"

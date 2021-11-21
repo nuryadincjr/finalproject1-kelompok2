@@ -100,30 +100,30 @@ public class ArchipFragment extends Fragment {
             public void openMenuEditPopup(View view, ToDo toDo) {
                 PopupMenu menu = new PopupMenu(view.getContext(), view);
                 menu.getMenuInflater().inflate(R.menu.menu_edit, menu.getMenu());
-                menu.getMenu().findItem(R.id.act_restore).setVisible(false);
+                menu.getMenu().findItem(R.id.itemRestore).setVisible(false);
 
-                if(toDo.isPin()) menu.getMenu().findItem(R.id.act_pin)
+                if(toDo.isPin()) menu.getMenu().findItem(R.id.itemPin)
                         .setTitle(getString(R.string.str_unpin));
                 else if(toDo.isArcip()) menu.getMenu().findItem(R.id
-                        .act_arsip).setTitle(getString(R.string.str_unarchip));
+                        .itemArsip).setTitle(getString(R.string.str_unarchip));
 
                 menu.setOnMenuItemClickListener(item -> {
                     switch (item.getItemId()) {
-                        case R.id.act_pin:
+                        case R.id.itemPin:
                             if(toDo.isPin()) getPopupSelected(toDo, false, false, false);
                             else getPopupSelected(toDo, true, false, false);
                             break;
-                        case R.id.act_arsip:
+                        case R.id.itemArsip:
                             if(toDo.isArcip()) getPopupSelected(toDo, false, false, false);
                             else getPopupSelected(toDo, false, false, true);
                             break;
-                        case R.id.act_delete:
+                        case R.id.itemDelete:
                             getPopupSelected(toDo, false, true, false);
                             break;
-                        case R.id.act_delete_fix:
+                        case R.id.itemDeleteFix:
                             deleteFix(toDo);
                             break;
-                        case R.id.act_share:
+                        case R.id.itemShare:
                             if(!toDo.getTitle().equals("") && !toDo.getDetails().equals(""))
                                 shareData("Title: " + toDo.getTitle() + "\n\n" + toDo.getDetails());
                             else if(toDo.getTitle().equals("")) shareData(toDo.getDetails());
@@ -138,8 +138,8 @@ public class ArchipFragment extends Fragment {
             @Override
             public void openMenuEditToolsClick(View view, ToDo toDo) {
                 switch (view.getId()) {
-                    case R.id.tv_title_task:
-                    case R.id.tv_detail_task:
+                    case R.id.tvTitleTask:
+                    case R.id.tvDetailTask:
                         startActivity(new Intent(getContext(), ActionsActivity.class)
                                 .putExtra(Constaint.TITLE_CHANGE, toDo));
                         break;

@@ -42,7 +42,7 @@
                 </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/btn_data_count"
+                    android:id="@+id/ibDeleteCount"
                     style="@style/SetingButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -75,7 +75,7 @@
                 </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/btn_data_list"
+                    android:id="@+id/ibDeleteList"
                     style="@style/SetingButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -108,7 +108,7 @@
                 </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/btn_data_pin"
+                    android:id="@+id/ibDeletePin"
                     style="@style/SetingButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -141,7 +141,7 @@
                 </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/btn_data_archive"
+                    android:id="@+id/ibDeleteArchive"
                     style="@style/SetingButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -174,7 +174,7 @@
                 </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/btn_data_trash"
+                    android:id="@+id/ibDeleteTrash"
                     style="@style/SetingButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"

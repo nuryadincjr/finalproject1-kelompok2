@@ -2,14 +2,14 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/act_search"
+    <item android:id="@+id/itemSearch"
         android:title="@string/str_search"
         android:icon="@drawable/ic_search"
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.widget.SearchView" />
 
     <item
-        android:id="@+id/act_view"
+        android:id="@+id/itemView"
         android:icon="@drawable/ic_view_gird"
         android:title="@string/str_view"
         app:actionLayout="@layout/btn_view"
